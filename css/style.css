@@ -216,6 +216,11 @@ li {
   font-size: 14px;
 }
 
+#OWstatsbot-img {
+  max-height: 182px;
+  width: 100%;
+}
+
 #wiki-img {
   max-height: 182px;
   width: 100%;
