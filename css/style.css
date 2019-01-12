@@ -138,7 +138,7 @@ li {
 
 #aboutme #portrait {
   width: 350px;
-  margin: 20px auto 0px auto;
+  margin: 70px auto 0px auto;
 }
 
 #portfolio {
@@ -148,7 +148,13 @@ li {
   color: white;
 }
 
+#portfolio h2 {
+	text-shadow: -1.5px -1.5px 0 #111, 1.5px -1.5px 0 #111, -1.5px 1.5px 0 #111, 1.5px 1.5px 0 #111;
+}
 
+#portfolio h3 {
+	text-shadow: -.75px -.75px 0 #111, .75px -.75px 0 #111, -.75px .75px 0 #111, .75px .75px 0 #111;
+}
 
 #portfolio .row .col-sm-4 {
   text-align: center;
