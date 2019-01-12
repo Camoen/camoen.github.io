@@ -169,6 +169,8 @@ li {
   border: #eee solid;
   border: rgba(238,238,238,0.85) solid 2px;
   border-bottom: 0px;
+  height: 182px;
+  width: 100%;
 }
 
 #portfolio .row .col-sm-4 .portfolio_effect {
@@ -214,16 +216,6 @@ li {
 #portfolio .row .col-sm-4 p span {
   font-style: italic;
   font-size: 14px;
-}
-
-#OWstatsbot-img {
-  max-height: 182px;
-  width: 100%;
-}
-
-#wiki-img {
-  max-height: 182px;
-  width: 100%;
 }
 
 #contact {
