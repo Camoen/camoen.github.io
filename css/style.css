@@ -142,19 +142,17 @@ li {
 }
 
 #portfolio {
-  background: url("https://raw.githubusercontent.com/Camoen/camoen.github.io/master/images/portfolio4.jpg") center center fixed;
+  background: url("https://raw.githubusercontent.com/Camoen/camoen.github.io/master/images/portfolio5.jpg") center center fixed;
   background-size: cover;
   padding-bottom: 83px;
   color: white;
 }
 
+/*
 #portfolio h2 {
 	text-shadow: -1.5px -1.5px 0 #111, 1.5px -1.5px 0 #111, -1.5px 1.5px 0 #111, 1.5px 1.5px 0 #111;
 }
-
-#portfolio h3 {
-	text-shadow: -.75px -.75px 0 #111, .75px -.75px 0 #111, -.75px .75px 0 #111, .75px .75px 0 #111;
-}
+*/
 
 #portfolio .row .col-sm-4 {
   text-align: center;
