@@ -14,6 +14,7 @@ body {
 h1 {
   font-size: 40px;
   text-shadow: 0 0 20px black;
+  /* outline-color: #333; */
 }
 
 h2, h3 {
@@ -55,8 +56,8 @@ li {
 }
 
 #title {
-  padding: 200px 0 390px 0;
-  background: url("https://raw.githubusercontent.com/Camoen/camoen.github.io/master/images/top.JPG") fixed;
+  padding: 300px 0 600px 0;
+  background: url("../images/IMG_1928.JPG") fixed;
   background-size: cover;
   color: white;
 }
@@ -142,9 +143,9 @@ li {
 }
 
 #portfolio {
-  background: url("https://raw.githubusercontent.com/Camoen/camoen.github.io/master/images/portfolio6.jpg") center center fixed;
+  background: url("../images/IMG_2174.JPG") center center fixed;
   background-size: cover;
-  padding-bottom: 83px;
+  padding-bottom: 100px;
   color: white;
 }
 
