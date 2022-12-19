@@ -7,7 +7,7 @@
 </head>
 <body style="background-color:powderblue;">
   <script>
-    // Historical commit from https://raw.githubusercontent.com/Camoen/Minefinder/37d296e7846dde6fc09727bbe3485cc522ebe83d/src/public/minefinder.js
+    // Historical commit from https://github.com/Camoen/Minefinder/blob/master/src/index.js
     const app = new PIXI.Application();
     document.body.appendChild(app.view);
     const Graphics = PIXI.Graphics;
@@ -205,7 +205,7 @@
             this.trackerWidth = width / 7 * 3;
             this.width = width;
             this.mineTracker = new MineTracker(this.headerContainer, this.trackerWidth + this.newGameButtonWidth,
-                                              this.modeSelectorHeight, this.trackerWidth, this.trackerHeight);
+                                            this.modeSelectorHeight, this.trackerWidth, this.trackerHeight);
             this.timer = new Timer(0, this.modeSelectorHeight, this.trackerWidth, this.trackerHeight);
             this.headerContainer.addChild(this.timer.gameTimer);
             this.createNewGameButton(this.trackerHeight);
@@ -366,17 +366,18 @@
             this.initializeGame();
             this.resetGameTicker();
             this.header.timer.updateTime(0);
+            this.header.newGameButtonText.text = "New\nGame";
             this.createBoard();
         }
 
         /**
-        * Initializes the game board (this.board), which maps coordinates to Cell objects:
-        * this.board = {'0|0': Cell(), '15|15': Cell(), ...} 
-        * 
-        * @param {Number} boardWidth   Number of cells along x-axis of game board
-        * @param {Number} boardHeight  Number of cells along y-axis of game board
-        * @param {Number} cellSize     Height and Width of one cell
-        */
+         * Initializes the game board (this.board), which maps coordinates to Cell objects:
+         * this.board = {'0|0': Cell(), '15|15': Cell(), ...} 
+         * 
+         * @param {Number} boardWidth   Number of cells along x-axis of game board
+         * @param {Number} boardHeight  Number of cells along y-axis of game board
+         * @param {Number} cellSize     Height and Width of one cell
+         */
         createBoard() {
             this.boardContainer = new PIXI.Container();
             this.board = new Map;
@@ -388,7 +389,7 @@
             for (let x = 0; x < this.width; x += 1){
                 for (let y = 0; y < this.height; y += 1){
                     this.board.set(this.getCellKeyString(x, y), 
-                                  new Cell(this.boardContainer, x * this.cellSize, y * this.cellSize, this.cellSize));
+                                new Cell(this.boardContainer, x * this.cellSize, y * this.cellSize, this.cellSize));
                 }
             }
             this.boardContainer.x = border;
@@ -397,10 +398,10 @@
         }
 
         /**
-        * Must create a new Ticker, since the highest level PIXI.Application has its own ticker.
-        * As a result, if we reset ticker via 'app.Ticker.stop()', the app will not render.
-        * May be able to refactor later on and rely on the highest level ticker.
-        */
+         * Must create a new Ticker, since the highest level PIXI.Application has its own ticker.
+         * As a result, if we reset ticker via 'app.Ticker.stop()', the app will not render.
+         * May be able to refactor later on and rely on the highest level ticker.
+         */
         createGameTicker(){
             let ticker = PIXI.Ticker.shared;
             ticker.autoStart = false;
@@ -409,8 +410,8 @@
         }
 
         /**
-        * TODO: Refactor game ticker into separate class if necessary.
-        */
+         * TODO: Refactor game ticker into separate class if necessary.
+         */
         updateGameTicker() {
             this.elapsedSeconds += this.gameTicker.elapsedMS / 1000;
             if (this.elapsedSeconds >= this.previousSecond + 1 ){
@@ -428,23 +429,23 @@
 
         endGame(win){
             this.gameTicker.stop();
-            this.revealMines();
+            this.revealMines(win);
             if (win === true){
                 this.header.mineTracker.updateRemainingMines(0);
-                alert("You won! :D");
-            } else{
-                alert("You lost! D:");
+                this.header.newGameButtonText.text = ":)";
+            } else {
+                this.header.newGameButtonText.text = ":(";
             }
         }
 
         /**
-        * Flag a cell as potentially having a mine. A flagged cell cannot be revealed 
-        * until it is unflagged.
-        * 
-        * @param {Number} xCoord 
-        * @param {Number} yCoord 
-        * @returns 
-        */
+         * Flag a cell as potentially having a mine. A flagged cell cannot be revealed 
+         * until it is unflagged.
+         * 
+         * @param {Number} xCoord 
+         * @param {Number} yCoord 
+         * @returns 
+         */
         flagCell(xCoord, yCoord){
             if (this.gameOver){
                 return;
@@ -474,13 +475,13 @@
         }
 
         /**
-        * Only place mines after the player's first click. A player should never lose on
-        * the first turn, unless the entire board is filled with mines.
-        * 
-        * @param {Number} xCoord 
-        * @param {Number} yCoord 
-        * @returns
-        */
+         * Only place mines after the player's first click. A player should never lose on
+         * the first turn, unless the entire board is filled with mines.
+         * 
+         * @param {Number} xCoord 
+         * @param {Number} yCoord 
+         * @returns
+         */
         placeMines(xCoord, yCoord){
             let placedMines = 0;
             let cellKeys = Array.from(this.board.keys());
@@ -506,12 +507,12 @@
         }
 
         /**
-        * Traverse the board and recursively reveal all adjacent cells that are blank.
-        * 
-        * @param {Number} xCoord 
-        * @param {Number} yCoord 
-        * @returns 
-        */
+         * Traverse the board and recursively reveal all adjacent cells that are blank.
+         * 
+         * @param {Number} xCoord 
+         * @param {Number} yCoord 
+         * @returns 
+         */
         revealCells(xCoord, yCoord){
             if (this.gameOver){
                 return;
@@ -540,8 +541,8 @@
             }
 
             let directions = [[-1, -1], [-1, 0], [-1, 1], 
-                              [ 0, -1], [ 0, 1],
-                              [ 1, -1], [ 1, 0], [ 1, 1]];
+                            [ 0, -1], [ 0, 1],
+                            [ 1, -1], [ 1, 0], [ 1, 1]];
 
 
             // Use an arrow function to retain the 'this' value of the current context
@@ -593,27 +594,34 @@
         }
 
         /**
-        * When a player clicks a mine, reveal all remaining cells.
-        */
-        revealMines(){
+         * When a player clicks a mine, reveal all remaining cells.
+         */
+        revealMines(win){
             let cellKeys = Array.from(this.board.keys());
             for (const cellKey of cellKeys){
                 let cell = this.board.get(cellKey);
-                if (cell.value == "M" && !cell.flagged) {
-                    cell.updateCell("X");
-                } else if (cell.value != "M" && cell.flagged) {
-                    // Indicate that a cell was falsely flagged by the player
-                    cell.updateCell("FALSE_FLAG");
+                if (win){
+                    // Mark all mines with flags if game is won
+                    if (cell.value == "M" && !cell.flagged) {
+                        cell.toggleFlag();
+                    }
+                } else {
+                    if (cell.value == "M" && !cell.flagged) {
+                        cell.updateCell("X");
+                    } else if (cell.value != "M" && cell.flagged) {
+                        // Indicate that a cell was falsely flagged by the player
+                        cell.updateCell("FALSE_FLAG");
+                    }
                 }
             }
             this.gameOver = true;
         }
 
         /**
-        * Route clicks to the gameboard or header depending on click location.
-        * @param {*} xCoord 
-        * @param {*} yCoord 
-        */
+         * Route clicks to the gameboard or header depending on click location.
+         * @param {*} xCoord 
+         * @param {*} yCoord 
+         */
         routeClick(xCoord, yCoord){
             if (yCoord < (this.headerHeight + this.border * 2)){
                 let mode = this.header.getModeOption(xCoord, yCoord);
@@ -653,7 +661,7 @@
     app.view.addEventListener('contextmenu', (e) => {
         console.log("contextmenu", e)
         e.preventDefault();
-    });    
+    });
   </script>
 </body>
 </html>
